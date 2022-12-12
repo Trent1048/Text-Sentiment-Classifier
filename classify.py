@@ -43,3 +43,7 @@ text_classifier.fit(training_text, training_label)
 # test the classifier
 predicted = text_classifier.predict(testing_text)
 print(np.mean(predicted == testing_label))
+
+while True:
+    sentence = input("Input a sentence to test: ")
+    print("Classified as " + text_classifier.predict([sentence])[0])
