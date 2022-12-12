@@ -18,25 +18,19 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 
 # read the data
-try:
-    tweet_data = pandas.read_csv('dataset.csv', sep=',')
-except FileNotFoundError as e:
-    print(e)
-    exit()
+tweet_data = pandas.read_csv('dataset_sanitized.csv', sep=',')
 
 # filter out just the english data (no spanish or french just to make it consistent)
 english_tweet_data = tweet_data.loc[np.where(tweet_data['Language'] == 'en')]
 
-# TODO: perhaps take out hashtags, tagging people, and urls here
-
 # split the data into training and testing data
 training_text, testing_text, training_label, testing_label = train_test_split(
-    english_tweet_data["Text"], english_tweet_data["Label"], test_size=0.2, random_state=0)
+    english_tweet_data['Text'], english_tweet_data['Label'], test_size=0.2, random_state=0)
 
 classifiers = [
-    ("Support Vector Machine", LinearSVC()),
-    ("Naive Bayes", MultinomialNB()),
-    ("Decision Tree", DecisionTreeClassifier(max_depth=3)),
+    ('Support Vector Machine', LinearSVC()),
+    ('Naive Bayes', MultinomialNB()),
+    ('Decision Tree', DecisionTreeClassifier(max_depth=3)),
 ]
 
 # for keeping track of the most accurate classifier
@@ -63,9 +57,9 @@ for classifier_name, classifier in classifiers:
     accuarcy = np.mean(predicted == testing_label)
 
     # display the stats
-    print("-- " + classifier_name + " --")
-    print("Accuracy: {:.2f}%".format(accuarcy * 100))
-    print("Calculation Time: {:.2f} seconds".format(time.time() - start_time))
+    print('-- ' + classifier_name + ' --')
+    print('Accuracy: {:.2f}%'.format(accuarcy * 100))
+    print('Calculation Time: {:.2f} seconds'.format(time.time() - start_time))
     print()
 
     # update the best classifier
@@ -75,5 +69,5 @@ for classifier_name, classifier in classifiers:
 
 # have manual input at the end for the best one
 while True:
-    sentence = input("Input a sentence to test: ")
-    print("Classified as " + best_classifier.predict([sentence])[0])
+    sentence = input('Input a sentence to test: ')
+    print('Classified as ' + best_classifier.predict([sentence])[0])

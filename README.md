@@ -13,10 +13,9 @@ I will use a naïve bayes classification solution using the scikit-learn library
 The project will be successful if it has a high rate of accuracy in predicting the sentiment of tweets in the test data set (say 90% or something. The number is arbitrary but as long as it is high, we are good). I will learn more about the naïve bayes algorithm through this project as well as improving my ability to implement machine learning solutions as I haven’t had any experience on that at all from before this course.
 
 ## Instructions:
-Download the dataset from [here](https://drive.google.com/file/d/1YXjk04KcXt_NbgtH7atSAeftenVYOPMS/view?usp=share_link) and put it in the folder of the repository (the file is too large for GitHub). It should be named dataset.csv.
-
 Install the required libraries:
 ```
 pip install pandas
 pip install scikit-learn
 ```
+Run `setup_data.py` then `classify.py`
